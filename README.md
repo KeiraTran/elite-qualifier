@@ -1,6 +1,6 @@
-# Title
+# AriaBot
 
-Simple  description
+## A restaurant bot for improving user experience.
 
 ## Table of Contents
 
@@ -12,7 +12,11 @@ Simple  description
 
 ## Background
 
-This is why this application exists.
+This bot is meant to be used to assist people in restaurants by providing information. It has some basic conversation skills built in along with information specific to the business that it is used for. 
+
+As Bill Gates said:
+
+> Robots and other combinations will make the world pretty fantastic compared with today. 
 
 ## Install
 
