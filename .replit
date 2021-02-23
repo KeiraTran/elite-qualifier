@@ -1,2 +1,4 @@
 language="html"
-run=""
+run = ""
+
+#python <main.py>
