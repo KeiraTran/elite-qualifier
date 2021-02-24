@@ -32,13 +32,15 @@ greetings_lower = [i.lower() for i in ["Hello", "Hi!", "Hi", "Hello there", "Sal
 
 gratitude_res = ["You're welcome!", "Happy to help!", "No problem!", "My pleasure!", "Have a great day!"]
 
-#TAKES TYPED MESSAGES FROM USER AND OUTPUTS A REPLY FROM BOT
+#TAKES TYPED MESSAGES FROM USER AND OUTPUTS A REPLY+EMOTION FROM BOT
 def getReply(message):
   if message != '': 
       if 'who' in message and 'you' in message:
-          reply = "Hello, I'm Aria."
+          reply = "My name is Aria! I was designed in 2020 to help with internet transactions. Nice to meet you!"
+          emotion('wink')
       elif 'joke' in message:
           reply = random.choice(jokes)
+          emotion('laugh')
       elif message in greetings or message in greetings_lower:
           reply = random.choice(greetings)
       elif message == "bye":
@@ -47,12 +49,11 @@ def getReply(message):
           reply = "I'm doing great! Thanks for asking!"
       elif 'thank' in message: 
           reply = random.choice(gratitude_res)
-      elif 'menu' in message:
-          reply = menu
       elif 'hours' in message:
           reply = "We're open every day from 10AM to 10PM."
       else:
           reply = "Sorry, I don't understand"
+          emotion('confused')
   return reply
 
 
@@ -140,6 +141,22 @@ def send():
     ChatLog.yview(END)
 
 
+#CONDITIONAL FOR EMOTIONS
+def emotion(s):
+  if s == 'happy': 
+    newCanvas.create_image(150, 200, image = smile)
+  elif s == 'laugh':
+    newCanvas.create_image(150, 200, image = laugh)
+  elif s == 'confused':
+    newCanvas.create_image(150, 200, image = confused)
+  elif s == 'wink':
+    newCanvas.create_image(150, 200, image = wink)
+  else: 
+    newCanvas.create_image(150, 200, image = smile)
+
+
+
+
 #SETTING UP WINDOWS
 base = Tk()
 base.title("ChatBot")
@@ -184,11 +201,15 @@ newCanvas.grid(row=0, column=0, padx=0, pady=0)
 # load the .gif image file
 # put in your own gif file here, may need to add full path
 # like 'C:/WINDOWS/Help/Tours/WindowsMediaPlayer/Img/mplogo.gif'
-gif1 = PhotoImage(file = './images/test.gif')
+smile = PhotoImage(file = './images/smile.png')
+laugh = PhotoImage(file = './images/laugh.png')
+confused = PhotoImage(file = './images/confused.png')
+wink = PhotoImage(file = './images/wink.png')
 
 # put gif image on canvas
 #Later, this should include if statements to display different emotions
-newCanvas.create_image(150, 200, image = gif1)
+
+newCanvas.create_image(150, 200, image = smile)
 
 
 #CREATE LISTBOX

@@ -1,4 +1,2 @@
-language="html"
-run = ""
-
-#python <main.py>
+language = "python3"
+run = "python main.py"
