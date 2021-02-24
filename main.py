@@ -15,8 +15,11 @@ def start():
   ChatLog.config(state=DISABLED)
   ChatLog.yview(END)
 
+  emotion('laugh')
+
+
   #Create Button to checkout
-  checkoutButton = Button(base, font=("Verdana",12,'bold'), text="Checkout", width="12", height=5, bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff', command= checkout )
+  checkoutButton = Button(base, font=("Verdana",12,'bold'), text="Checkout", width="12", height=5, bd=0, bg="#59cdb9", activebackground="#3c9d9b",fg='#ffffff', command= checkout )
   checkoutButton.place(x=6, y=401, height=90)
 
 
@@ -49,8 +52,10 @@ def getReply(message):
           reply = "I'm doing great! Thanks for asking!"
       elif 'thank' in message: 
           reply = random.choice(gratitude_res)
+          emotion('wink')
       elif 'hours' in message:
           reply = "We're open every day from 10AM to 10PM."
+          emotion('smile')
       else:
           reply = "Sorry, I don't understand"
           emotion('confused')
@@ -68,7 +73,9 @@ def checkout():
   ChatLog.yview(END)
   listbox.place(x=60, y=131, height=150, width=265)
 
-  confirmButton = Button(base, font=("Verdana",12,'bold'), text="Confirm Items", width="12", height=5, bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff', command= confirm)
+  emotion('smile')
+
+  confirmButton = Button(base, font=("Verdana",12,'bold'), text="Confirm Items", width="12", height=5, bd=0, bg="#59cdb9", activebackground="#3c9d9b",fg='#ffffff', command= confirm)
   confirmButton.place(x=6, y=401, height=90)
   
   
@@ -106,6 +113,7 @@ def confirm():
   # Printing total value
   print("Sum of all elements in given list: ", total)
   
+  emotion('laugh')
   
   replyConfirm = (', '.join(values))
   replyTotal = 'Your total is: $' + str(total) + '. Thank you for shopping with us today!'
@@ -113,7 +121,7 @@ def confirm():
   ChatLog.insert(END, "Aria: " + str(replyTotal) + '\n\n')
   ChatLog.config(state=DISABLED)
   ChatLog.yview(END)
-  endButton = Button(base, font=("Verdana",12,'bold'), text="End Conversation", width="12", height=5, bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff', command= endConversation)
+  endButton = Button(base, font=("Verdana",12,'bold'), text="End Conversation", width="15", height=5, bd=0, bg="#59cdb9", activebackground="#3c9d9b",fg='#ffffff', command= endConversation)
   endButton.place(x=6, y=401, height=90)
 
 #ENDS THE CODE
@@ -168,7 +176,7 @@ left_frame.grid(row=0, column=0, padx=10, pady=5)
 
 #ADDING TKINTER COMPONENTS
 #Create Chat window
-ChatLog = Text(base, bd=0, bg="white", height="8", width="50", font="Arial",)
+ChatLog = Text(base, bd=0, bg="white", height="8", width="50", font="Arial", fg = '#000000')
 ChatLog.config(state=DISABLED)
 
 #Bind scrollbar to Chat window
@@ -176,14 +184,14 @@ scrollbar = Scrollbar(base, command=ChatLog.yview, cursor="arrow")
 ChatLog['yscrollcommand'] = scrollbar.set
 
 #Create the box to enter message
-EntryBox = Text(base, bd=0, bg="white",width="29", height="5", font="Arial")
+EntryBox = Text(base, bd=0, bg="white",width="29", height="5", font="Arial", fg = '#000000')
 #EntryBox.bind("<Return>", send)
 
 #Create Button to start conversation
-startButton = Button(base, font=("Verdana",12,'bold'), text="Talk to Aria", width="12", height=5, bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff', command= start)
+startButton = Button(base, font=("Verdana",12,'bold'), text="Talk to Aria", width="12", height=5, bd=0, bg="#59cdb9", activebackground="#3c9d9b",fg='#ffffff', command= start)
 
 #Create Button to send message
-SendButton = Button(base, font=("Verdana",12,'bold'), text="Send", width="6", height=5, bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff', command= send )
+SendButton = Button(base, font=("Verdana",12,'bold'), text="Send", width="6", height=5, bd=0, bg="#59cdb9", activebackground="#3c9d9b",fg='#ffffff', command= send )
 
 
 
@@ -211,9 +219,10 @@ wink = PhotoImage(file = './images/wink.png')
 
 newCanvas.create_image(150, 200, image = smile)
 
-
+spearmint = '#17392f'
+gray = '#AEDFDB'
 #CREATE LISTBOX
-listbox = Listbox(base, selectmode = "multiple", height = 10,  width = 15,  bg = "grey",  activestyle = 'dotbox',  font = "Helvetica", fg = "yellow") 
+listbox = Listbox(base, selectmode = "multiple", height = 10,  width = 15,  bg = gray,  activestyle = 'dotbox',  font = "Verdana", fg = spearmint) 
     
 # insert elements by their 
 # index and names. 
@@ -228,7 +237,7 @@ listbox.insert(5, "Burrito: $10")
 scrollbar.place(x=376,y=6, height=386)
 ChatLog.place(x=6,y=6, height=386, width=370)
 startButton.place(x=6, y=401, height=90)
-EntryBox.place(x=440, y=401, height=90, width=265)
+EntryBox.place(x=445, y=401, height=90, width=265)
 SendButton.place(x=350, y=401, height=90)
 
 
